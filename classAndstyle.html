@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>class and style绑定</title>
+		<style>
+			.aclass{
+				color: aqua;
+			}
+			.bclass{
+				color: plum;
+			}
+			.cclass{
+				font-size: 20px;
+			}
+		
+		</style>
+	</head>
+	<body>		
+		<div id="app3">
+			<h1>class绑定:</h1>
+			<!-- 将静态class和动态class结合在一起 -->
+			<p class="cclass" v-bind:class="a">看我36变</p>
+			<!-- true就选择 -->
+			<p :class="{aclass:isA,bclass:isB}">看我72变</p>
+			<!-- 公用aclass和cclass -->
+			<p :class="['aclass','cclass']">看我72变</p>
+			
+			<h1>style绑定:</h1>
+			<button @click="update()">更新颜色</button>
+			
+			<!-- 设置颜色和字体大小样式，可以update动态变化 -->
+			<p :style="{color:activeColor,fontSize:fontSize+'px'}">看我样式</p>
+			
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		
+		<script type="text/javascript">	
+					new Vue({
+						 
+						//绑定div标签id=app 
+						el:"#app3",
+						data:{
+							a:"aclass",
+							isA:true,
+							isB:false,
+							activeColor:'red',
+							fontSize:'20'
+						},methods:{
+							update(){
+								this.a='bclass'
+								this.isA=false,
+								this.isB=true,
+								this.activeColor='purple',
+								this.fontSize='50'
+							}
+						}
+					
+					})
+		
+		</script>
+		
+	</body>
+</html>

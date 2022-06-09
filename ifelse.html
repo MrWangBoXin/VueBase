@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>条件渲染if else show</title>
+	</head>
+	<body>		
+		<div id="app4">
+			<!-- 网页源代码只显示一个，切换需要重新创建浪费时间 -->
+			<p v-if="ok">成功</p>
+			<p v-else>失败</p>
+			
+			<!-- 网页源代码显示两个，切换不需要重新创建，只是改变display的属性值 -->
+			<p v-show="ok">successful</p>
+			<p v-show="!ok">fail</p>
+			
+			<button @click="ok=!ok">切换</button>
+		
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>		
+		<script type="text/javascript">	
+					new Vue({
+						
+						//绑定div标签id=app 
+						el:"#app4",
+						data:{
+							ok:false
+						}
+					
+					})
+		 
+		</script>
+		
+	</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>计算属性联动</title>
+	</head>
+	<body>
+				
+		<div id="app2">
+			<h1>数据联动he监视</h1>
+			<!--  -->
+			first<input type="text" placeholder="first" v-model="first" /><br />
+			second<input type="text" placeholder="second" v-model="second" /><br />
+			<!--first+ second的值  通过计算中的one方法-->
+			one单<input type="text" placeholder="one" v-model="one" /><br />
+			
+			<!-- 通过watch中的first和 vm.$watch-->
+			two单<input type="text" placeholder="two" v-model="two" /><br />
+			
+			<!-- 通过通过计算中的get和set方法  get方法存在缓存，多次取值只调用一次 -->
+			three双<input type="text" placeholder="three" v-model="three" /><br />
+	
+		</div>		
+			
+			<script type="text/javascript" src="./vue.js" ></script>
+			
+			<script type="text/javascript">	
+					const vm=	new Vue({
+							
+							el:"#app2",
+							data: {
+								
+								first:'',
+								second:'',
+								two:''
+	
+						          },
+							computed:{
+								one(){
+								return this.first+' '+this.second
+								},
+								three:{
+									// 当first或second发生变化 调用 返回给three
+									get(){
+										return this.first+' '+this.second
+									},
+									// 当绑定three的输入框数据变化，会将值分割 赋值给first和second
+									set(value){
+										const names=value.split(' ')
+										this.first=names[0],
+										this.second=names[1]
+									}
+								}
+							},
+							watch:{
+								 // 监听标签data的first值的变化
+								first:function(value){
+									this.two=value+' '+this.second
+								}
+								
+							}
+				})
+				vm.$watch('second',function(value){
+					this.two=this.first+' '+value
+				})
+			
+			</script>
+	</body>
+</html>

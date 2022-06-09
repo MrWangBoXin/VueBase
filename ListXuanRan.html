@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>列表渲染</title>
+	</head>
+	<body>		
+		<div id="app5">
+			
+			
+			
+			<h1>v-for遍历数组</h1>
+			<ul>
+				<li v-for="(p,index) in persons" :key="index">
+					{{index}} {{p.name}} {{p.age}}
+					<button @click="deleteP(index)">删除</button>
+					<button @click="update(index,{name:'Dog',age:180})">更新</button>
+				</li>
+			</ul>
+			
+			<h1>v-for遍历对象</h1>
+			<ul>
+				<!-- 选择persons【1】代表第二个对象 -->
+				<li v-for="(value,key) in persons[1]" :key="key">
+					{{key}} {{value}} 
+					 
+				</li>
+			</ul>
+			
+		
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>		
+		<script type="text/javascript">	
+					new Vue({
+						
+						//绑定div标签id=app 
+						el:"#app5",
+						data:{
+							//vue只监听persons的改变，而不监听persons内部元素的变化
+							//vue重写了数组中的一系列改变数组内部的方法(splice,push,pop等)，当修改内部，界面也会变化
+							persons:[
+								{name:'Tom',age:18},
+								{name:'Jack',age:21},
+								{name:'Bob',age:22},
+								{name:'Rose',age:23}
+							]
+						}, 
+						methods:{
+							deleteP(index){
+								//删除指定index元素,1代表删除
+								this.persons.splice(index,1)
+							},
+							update(index,person){
+								//并没有改变persons本身，只是改变内部
+								//this.persons[index]=person
+								
+								//更新
+								this.persons.splice(index,1,person)
+								
+								//增加
+								//this.persons.splice(index,0,person)
+							}
+						}
+					
+					})
+		 
+		</script>
+		
+	</body>
+</html>

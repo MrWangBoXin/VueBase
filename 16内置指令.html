@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- 常用内置指令-->
+		<meta charset="utf-8">
+		<title>指令v-cloak</title>
+		<style>
+			/* v-cloak防止闪现：vue的标签属性解析完后就是HTML的标签
+			 ，在解析之前让使用v-cloak的标签不显示，解析之后v-cloak就不存在了
+			 所以就只显示解析之后的结果，就防止了闪现*/
+			[v-cloak]:{
+				display: none;     
+			}
+		</style>
+	</head>
+	<body>		
+		<div id="app">
+				<!-- 读取标签内容 -->
+				<p ref="content">AAA</p>
+				<button @click="hint">提示</button>
+				<h1 v-cloak>{{msg}}</h1>
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		<!-- 导入时间js -->
+		<script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.21.0/moment.js" ></script>
+		
+		<script type="text/javascript">	
+					
+					new Vue({
+						
+						//绑定div标签id=app 
+						el:"#app",
+						data:{
+							msg:"hollysys"
+						},
+						methods: {
+							hint() {
+								alert(this.$refs.content.textContent)
+							}
+						}
+										
+			
+					})
+		</script>
+		
+	</body>
+</html>

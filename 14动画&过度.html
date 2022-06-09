@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue动画与过度</title>
+		<style>
+			.xxx-enter-active,.xxx-leave-active{
+				transition: opacity 2s;
+			}
+			.xxx-enter,.xxx-leave-to{
+				opacity: 0;
+				
+			}
+			
+			/* //动画显示的过程 */
+			.move-enter-active{
+				transition: all 6s;
+			}
+			/* //动画隐藏的过程 */
+			,.move-leave-active{
+				transition: all 3s;
+			}
+			/* //动画显示之前的状态 */
+			.move-enter{
+				opacity: 0;
+				transform: translateY(500px);
+			}
+			/* //动画消失后的状态 */
+			.move-leave{
+				/* opacity是透明度的意思 */
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>		
+		<div id="app14">
+			
+			<button @click="isShow=!isShow">toggle</button>
+			
+			
+			<transition name="xxx">
+				<p v-show="isShow" class="xxx-enter-to">hahaha</p>
+			</transition>
+			
+		</div>
+		<div id="app15">
+			
+			<button @click="isShow=!isShow">toggle</button>
+		
+			
+			<transition name="move">
+				<p v-show="isShow" class="xxx-enter-to">hahaha</p>
+			</transition>
+			
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		
+		<script type="text/javascript">	
+					new Vue({
+						//绑定div标签id=app14
+						el:"#app14",
+						data() {
+							return {isShow:true}
+						}
+					})
+					new Vue({
+						//绑定div标签id=app14
+						el:"#app15",
+						data() {
+							return {isShow:true}
+						}
+					})
+		
+		</script>
+		
+	</body>
+</html>

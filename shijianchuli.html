@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件处理</title>
+	</head>
+	<body>		
+		<div id="app7">
+			<h1>1.绑定监听</h1>
+			<button @click="test1">test1</button>
+			<button @click="test2('hahahahha1')">test2</button>
+			<!-- test3($event)==test3 -->
+			<!-- 不传参数默认传￥event，传入参数就只有传入的参数 -->
+			<button @click="test3">test3</button>
+			<!-- 如果不传入$event那么就没有event.target.innerHTML -->
+			<button @click="test4(123,$event)">test4</button>
+			
+			<h1>2.事件修饰符</h1>
+			
+			<!-- 黄色在红色里面，当点击黄色就会带动点击红色 -->
+			<!-- 当给里里面的黄色div标签@click.stop就可以阻止级联带动 -->
+			<div style="width: 200px;height:200px;background: red;"  @click="test5">
+				<div style="width: 100px;height:100px;background: yellow;" @click.stop="test6">
+					
+				</div>
+			</div>
+			<!-- a标签的href默认是点击跳转到指定网站，但是使用@click.prevent就可以阻止标签的默认事件 --> 
+			<a href="http://www.baidu.com" @click.prevent="test7">go 百度！！！</a>
+			
+			<h1>2.按键修饰符</h1>
+			<!-- 当按到enter案件调用test8，弹出标签的值 -->
+			<input type="text" @keyup.enter="test8"/>
+			
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		
+		<script type="text/javascript">	
+					new Vue({
+						
+						//绑定div标签id=app 
+						el:"#app7",
+						data:{
+							test1(){
+								alert('test1')
+							},
+							test2(msg){
+								alert(msg)
+							},
+							test3(){
+								alert(event.target.innerHTML)
+							},
+							test4(number,event){
+								alert(number+'---'+event.target.innerHTML)
+								
+							},
+							test5(){
+								alert('out red')
+							},
+							test6(){
+								
+								alert('in yellow')
+							},
+							test7(){
+								alert('点击事件')
+							},
+							test8(event){
+								
+								
+								alert(event.target.value)
+								
+							}
+						}
+					
+					})
+		
+		</script>
+		
+	</body>
+</html>

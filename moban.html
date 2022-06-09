@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>常见模板</title>
+	</head>
+	<body>
+		
+	<div id="app1">
+		<h1>双大括号数据绑定</h1>
+		<p>原始:{{rawHtml}}</p>
+		<p>大写:{{rawHtml.toUpperCase()}}</p>
+		<p v-text="rawHtml"></p>
+		
+		<!-- 把vm中的rawhtml看作html格式-->
+		<p v-html="rawHtml"></p>
+		
+		<h1>绑定图片</h1>
+		<!-- 普通绑定无效果 -->
+		<img src="imgUrl" />
+		<!-- 两种书写方式 -->
+		<img v-bind:src="imgUrl" />
+		<img :src="imgUrl" />
+		
+		<h1>绑定事件</h1>
+		<!-- 两种书写方式，调用vm中的methids的test方法 -->
+		<button v-on:click="test1('点击1')">点击1</button>
+		<button @click="test1('点击2')">点击2</button>
+	</div>		
+		
+		<script type="text/javascript" src="./vue.js" ></script>
+		
+		<script type="text/javascript">	
+					new Vue({
+						
+						el:"#app1",
+						data: {
+							
+							rawHtml: '<a href="www.baidu.com">百度一下</a>',
+							imgUrl: 'https://gw.alipayobjects.com/mdn/prod_resource/afts/img/A*CyftQbhaz4EAAAAAAAAAAAAAARQnAQ'
+												
+					          },
+						methods:{
+							test1(value){
+								alert(value);
+							}
+							
+						}
+			})	
+		</script>	
+	</body>
+</html>

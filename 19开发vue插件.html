@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>vue插件</title>
+	</head>
+	<body>		
+		<div id="app">
+			<p v-my-directive="msg"></p>
+
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		<script type="text/javascript" src="./vue-myPlugin.js" ></script>
+		
+		<script type="text/javascript">	
+			//声明使用插件
+			Vue.use(MyPlugin) //内部会执行Myplugin.install(Vue)
+			
+			//调用全局方法
+			Vue.myGlobalMethod()
+			
+			const vm=new Vue({
+						
+						//绑定div标签id=app 
+						el:"#app",
+						data:{
+							msg:"Hello World"
+						}
+					
+					})
+			//调用实例方法 
+			vm.$myMethod()		
+		
+		</script>
+		
+	</body>
+</html>

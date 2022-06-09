@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单输入绑定,自动收集数据</title>
+	</head>
+	<body>		
+		<div id="app8">
+			<form action="/xxx" @submit.prevent="handleSubmit">
+				<!-- v-model用于自己被vm监听，并将自己的值给vm中的username属性 -->
+				用户名：<input type="text" v-model="username" /><br />
+				密码：<input type="password" v-model="pwd" /><br />
+				性别：<input type="radio" id="female" value="女" v-model="sex"/>女
+				      <input type="radio" id="male" value="男" v-model="sex"/>男<br />
+			    爱好：	<input type="checkbox" id="basket" value="basket" v-model="likes"/>篮球
+						<input type="checkbox" id="foot" value="foot" v-model="likes"/>足球
+						<input type="checkbox" id="pingpang" value="pingpang" v-model="likes"/>乒乓<br />
+						
+				城市:<select v-model="cityId">
+					<option value="">请选择</option>
+					<option :value="city.id" v-for="(city,index) in allCitys" :key="index">{{city.name}}</option>
+				</select><br />
+				
+				介绍：<textarea rows="10" v-model="descript"></textarea><br /><br />
+				
+				<input type="submit" value="注册"/>
+				
+			
+			</form>
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		
+		<script type="text/javascript">	
+					new Vue({
+						
+						//绑定div标签id=app8 
+						el:"#app8",
+						data:{
+							username:"",
+							pwd:"",
+							sex:"",
+							likes:[],
+							allCitys:[{id:1,name:"西安"},{id:2,name:"北京"},{id:3,name:"上海"}],
+							cityId:"",
+							descript:''
+						},
+						methods: {
+							handleSubmit() {
+								console.log(this.pwd,this.username)
+							}
+						}
+						
+					
+					})
+		
+		</script>
+		
+	</body>
+</html>

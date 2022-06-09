@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DOM监听，数据绑定</title>
+	</head>
+	<body>		
+		<div id="app">
+				<!-- v-model用于自己被vm监听，并将自己的值给vm中的username属性 -->
+				<input v-model="username" />
+				
+				<!-- 绑定：用于获取vm中的username数据 -->
+				<h1 align="center">{{username}}</h1>
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		
+		<script type="text/javascript">	
+					new Vue({
+						
+						//绑定div标签id=app 
+						el:"#app",
+						data:{
+							username:""
+						}
+					
+					})
+		
+		</script>
+		
+	</body>
+</html>

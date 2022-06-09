@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>过滤器之时间格式化</title>
+	</head>
+	<body>		
+		<div id="app">
+				<h1>时间</h1>
+				<p>{{date}}</p>
+				<p v-show="is">格式化时间：{{date|filterName('YYYY-MM-DD')}}</p>
+		</div>
+			
+		<script type="text/javascript" src="./vue.js" ></script>
+		<!-- 导入时间js -->
+		<script type="text/javascript" src="https://cdn.bootcss.com/moment.js/2.21.0/moment.js" ></script>
+		
+		<script type="text/javascript">	
+					Vue.filter("filterName",function(value,format){
+						return moment(value).format(format||'YYYY-MM-DD HH:mm:ss');
+					})
+					
+					new Vue({
+						
+						//绑定div标签id=app 
+						el:"#app",
+						data:{
+							date:new Date(),
+							is:true
+						}
+			
+					})
+		</script>
+		
+	</body>
+</html>
